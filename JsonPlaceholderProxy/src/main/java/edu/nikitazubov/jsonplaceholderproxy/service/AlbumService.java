@@ -5,13 +5,13 @@ import edu.nikitazubov.jsonplaceholderproxy.entity.Album;
 import java.util.List;
 
 public interface AlbumService {
-    public List<Album> getAllAlbums();
+    List<Album> getAllAlbums();
 
-    public Album getAlbumById(Long id);
+    Album getAlbumById(Long id);
 
-    public Album addNewAlbum(Album album);
+    Album addNewAlbum(Album album);
 
-    public Album updateAlbum(Album album);
+    Album updateAlbum(Album album);
 
-    public String deleteAlbum(Long id);
+    String deleteAlbum(Long id);
 }

@@ -5,13 +5,13 @@ import edu.nikitazubov.jsonplaceholderproxy.entity.User;
 import java.util.List;
 
 public interface UserService {
-    public List<User> getAllUsers();
+    List<User> getAllUsers();
 
-    public User getUserById(Long id);
+    User getUserById(Long id);
 
-    public User addNewUser(User user);
+    User addNewUser(User user);
 
-    public User updateUser(User user);
+    User updateUser(User user);
 
-    public String deleteUser(Long id);
+    String deleteUser(Long id);
 }
