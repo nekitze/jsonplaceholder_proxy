@@ -14,12 +14,6 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final DataSource dataSource;
-
-    public SecurityConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http

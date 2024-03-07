@@ -26,7 +26,7 @@ public class AlbumServiceImpl implements AlbumService {
                 TARGET_URL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Album>>() {
+                new ParameterizedTypeReference<>() {
                 }
         );
         return response.getBody();

@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
                 TARGET_URL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<User>>() {
+                new ParameterizedTypeReference<>() {
                 }
         );
         return response.getBody();

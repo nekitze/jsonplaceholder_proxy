@@ -26,7 +26,7 @@ public class PostServicImpl implements PostService {
                 TARGET_URL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Post>>() {
+                new ParameterizedTypeReference<>() {
                 }
         );
         return response.getBody();
