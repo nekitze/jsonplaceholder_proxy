@@ -2,8 +2,6 @@ package edu.nikitazubov.jsonplaceholderproxy.model;
 
 import lombok.*;
 
-import java.util.Objects;
-
 @NoArgsConstructor
 @Getter
 @Setter

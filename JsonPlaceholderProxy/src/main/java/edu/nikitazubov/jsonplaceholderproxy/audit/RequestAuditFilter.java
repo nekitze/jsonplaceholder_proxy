@@ -1,14 +1,12 @@
 package edu.nikitazubov.jsonplaceholderproxy.audit;
 
 import edu.nikitazubov.jsonplaceholderproxy.entity.AuditLog;
-import edu.nikitazubov.jsonplaceholderproxy.entity.ProxyUser;
 import edu.nikitazubov.jsonplaceholderproxy.repository.AuditLogRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

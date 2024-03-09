@@ -3,7 +3,6 @@ package edu.nikitazubov.jsonplaceholderproxy.service;
 import edu.nikitazubov.jsonplaceholderproxy.configuration.ProxyUserDetails;
 import edu.nikitazubov.jsonplaceholderproxy.entity.ProxyUser;
 import edu.nikitazubov.jsonplaceholderproxy.repository.ProxyUserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
