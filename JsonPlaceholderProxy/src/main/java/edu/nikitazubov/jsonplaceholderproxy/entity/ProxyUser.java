@@ -2,8 +2,6 @@ package edu.nikitazubov.jsonplaceholderproxy.entity;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "security.users")
 public class ProxyUser {

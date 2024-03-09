@@ -1,20 +1,15 @@
 package edu.nikitazubov.jsonplaceholderproxy.service;
 
 import edu.nikitazubov.jsonplaceholderproxy.model.Post;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Stream.ofNullable;
 
 @SpringBootTest
 public class PostServiceTest {

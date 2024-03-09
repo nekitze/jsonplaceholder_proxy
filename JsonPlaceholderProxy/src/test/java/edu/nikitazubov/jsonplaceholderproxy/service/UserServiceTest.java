@@ -1,7 +1,6 @@
 package edu.nikitazubov.jsonplaceholderproxy.service;
 
 import edu.nikitazubov.jsonplaceholderproxy.model.User;
-import edu.nikitazubov.jsonplaceholderproxy.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
