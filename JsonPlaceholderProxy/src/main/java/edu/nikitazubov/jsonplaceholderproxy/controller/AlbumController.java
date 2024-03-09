@@ -2,19 +2,17 @@ package edu.nikitazubov.jsonplaceholderproxy.controller;
 
 import edu.nikitazubov.jsonplaceholderproxy.model.Album;
 import edu.nikitazubov.jsonplaceholderproxy.service.AlbumService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/albums")
 public class AlbumController {
 
     private final AlbumService albumService;
-
-    public AlbumController(AlbumService albumService) {
-        this.albumService = albumService;
-    }
 
     @GetMapping("/")
     public List<Album> getAllAlbums() {

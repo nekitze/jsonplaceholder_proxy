@@ -2,19 +2,17 @@ package edu.nikitazubov.jsonplaceholderproxy.controller;
 
 import edu.nikitazubov.jsonplaceholderproxy.model.User;
 import edu.nikitazubov.jsonplaceholderproxy.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("/")
     public List<User> getAllUsers() {

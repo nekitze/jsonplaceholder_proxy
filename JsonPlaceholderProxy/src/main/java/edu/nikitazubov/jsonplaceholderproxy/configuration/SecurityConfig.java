@@ -1,14 +1,24 @@
 package edu.nikitazubov.jsonplaceholderproxy.configuration;
 
+import edu.nikitazubov.jsonplaceholderproxy.audit.RequestAuditFilter;
+import edu.nikitazubov.jsonplaceholderproxy.service.ProxyUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.sql.DataSource;
 
@@ -26,12 +36,13 @@ public class SecurityConfig {
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
-            "/swagger-ui.html"};
-//    private final LogoutHandler logoutHandler;
+            "/swagger-ui.html,",
+            "/api/proxy/users/**"};
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, RequestAuditFilter requestAuditFilter) throws Exception {
         http
+                .addFilterBefore(requestAuditFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests.requestMatchers(WHITE_LIST_URL)
                         .permitAll()
@@ -41,17 +52,25 @@ public class SecurityConfig {
                         .anyRequest()
                         .authenticated()
                 )
-//                .logout(logout ->
-//                        logout.logoutUrl("/api/auth/logout")
-//                                .addLogoutHandler(logoutHandler)
-//                                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-//                )
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 
     @Bean
-    public UserDetailsManager users(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
+    public UserDetailsService userDetailsService() {
+        return new ProxyUserDetailsService();
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService());
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

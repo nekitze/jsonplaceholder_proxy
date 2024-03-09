@@ -2,19 +2,17 @@ package edu.nikitazubov.jsonplaceholderproxy.controller;
 
 import edu.nikitazubov.jsonplaceholderproxy.model.Post;
 import edu.nikitazubov.jsonplaceholderproxy.service.PostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
 
     private final PostService postService;
-
-    public PostController(PostService postService) {
-        this.postService = postService;
-    }
 
     @GetMapping("/")
     public List<Post> getAllPosts() {
