@@ -1,6 +1,6 @@
 package edu.nikitazubov.jsonplaceholderproxy.controller;
 
-import edu.nikitazubov.jsonplaceholderproxy.entity.Post;
+import edu.nikitazubov.jsonplaceholderproxy.model.Post;
 import edu.nikitazubov.jsonplaceholderproxy.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +31,7 @@ public class PostController {
         return postService.addNewPost(post);
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     public Post updatePost(@RequestBody Post post) {
         return postService.updatePost(post);
     }

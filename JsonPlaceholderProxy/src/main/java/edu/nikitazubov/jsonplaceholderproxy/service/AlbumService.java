@@ -1,6 +1,6 @@
 package edu.nikitazubov.jsonplaceholderproxy.service;
 
-import edu.nikitazubov.jsonplaceholderproxy.entity.Album;
+import edu.nikitazubov.jsonplaceholderproxy.model.Album;
 
 import java.util.List;
 

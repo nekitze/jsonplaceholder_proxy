@@ -1,0 +1,4 @@
+users,{noop}users,true
+admin,{noop}admin,true
+albums,{noop}albums,true
+posts,{noop}posts,true

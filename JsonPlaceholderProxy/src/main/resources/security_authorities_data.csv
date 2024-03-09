@@ -1,0 +1,4 @@
+users,ROLE_USERS
+posts,ROLE_POSTS
+admin,ROLE_ADMIN
+albums,ROLE_ALBUMS

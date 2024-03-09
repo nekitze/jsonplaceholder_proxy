@@ -1,4 +1,4 @@
-package edu.nikitazubov.jsonplaceholderproxy.entity;
+package edu.nikitazubov.jsonplaceholderproxy.model;
 
 public class Address {
     private String street;

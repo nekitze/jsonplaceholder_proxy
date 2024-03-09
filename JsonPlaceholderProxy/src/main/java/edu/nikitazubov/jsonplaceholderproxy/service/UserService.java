@@ -1,6 +1,6 @@
 package edu.nikitazubov.jsonplaceholderproxy.service;
 
-import edu.nikitazubov.jsonplaceholderproxy.entity.User;
+import edu.nikitazubov.jsonplaceholderproxy.model.User;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ public interface UserService {
 
     User getUserById(Long id);
 
-    User addNewUser(User user);
+    User addNewUser(User post);
 
-    User updateUser(User user);
+    User updateUser(User post);
 
     String deleteUser(Long id);
 }

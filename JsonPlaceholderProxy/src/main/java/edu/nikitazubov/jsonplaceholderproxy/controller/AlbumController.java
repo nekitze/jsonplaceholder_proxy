@@ -1,6 +1,6 @@
 package edu.nikitazubov.jsonplaceholderproxy.controller;
 
-import edu.nikitazubov.jsonplaceholderproxy.entity.Album;
+import edu.nikitazubov.jsonplaceholderproxy.model.Album;
 import edu.nikitazubov.jsonplaceholderproxy.service.AlbumService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +31,7 @@ public class AlbumController {
         return albumService.addNewAlbum(album);
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     public Album updateAlbum(@RequestBody Album album) {
         return albumService.updateAlbum(album);
     }

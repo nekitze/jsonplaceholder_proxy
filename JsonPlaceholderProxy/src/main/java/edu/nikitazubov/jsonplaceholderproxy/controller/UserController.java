@@ -1,6 +1,6 @@
 package edu.nikitazubov.jsonplaceholderproxy.controller;
 
-import edu.nikitazubov.jsonplaceholderproxy.entity.User;
+import edu.nikitazubov.jsonplaceholderproxy.model.User;
 import edu.nikitazubov.jsonplaceholderproxy.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +31,7 @@ public class UserController {
         return userService.addNewUser(user);
     }
 
-    @PutMapping("/")
+    @PutMapping("/{id}")
     public User updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }

@@ -1,6 +1,6 @@
 package edu.nikitazubov.jsonplaceholderproxy.service;
 
-import edu.nikitazubov.jsonplaceholderproxy.entity.Post;
+import edu.nikitazubov.jsonplaceholderproxy.model.Post;
 
 import java.util.List;
 
