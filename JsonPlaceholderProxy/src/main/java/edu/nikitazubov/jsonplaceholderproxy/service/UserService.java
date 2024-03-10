@@ -1,7 +1,6 @@
 package edu.nikitazubov.jsonplaceholderproxy.service;
 
 import edu.nikitazubov.jsonplaceholderproxy.model.User;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

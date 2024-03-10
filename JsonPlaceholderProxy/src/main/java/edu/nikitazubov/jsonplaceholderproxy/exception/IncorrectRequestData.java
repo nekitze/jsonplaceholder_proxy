@@ -1,16 +1,12 @@
 package edu.nikitazubov.jsonplaceholderproxy.exception;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
 public class IncorrectRequestData {
     private String info;
-
-    public IncorrectRequestData() {
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
 }

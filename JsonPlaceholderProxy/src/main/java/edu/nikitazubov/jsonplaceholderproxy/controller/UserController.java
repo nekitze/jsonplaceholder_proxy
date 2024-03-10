@@ -2,7 +2,6 @@ package edu.nikitazubov.jsonplaceholderproxy.controller;
 
 import edu.nikitazubov.jsonplaceholderproxy.model.User;
 import edu.nikitazubov.jsonplaceholderproxy.service.UserService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

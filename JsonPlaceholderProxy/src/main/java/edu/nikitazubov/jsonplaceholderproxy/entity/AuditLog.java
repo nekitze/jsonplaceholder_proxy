@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.processing.SQL;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
