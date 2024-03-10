@@ -1,7 +1,7 @@
 package edu.nikitazubov.jsonplaceholderproxy.configuration;
 
 import edu.nikitazubov.jsonplaceholderproxy.audit.RequestAuditFilter;
-import edu.nikitazubov.jsonplaceholderproxy.service.ProxyUserDetailsService;
+import edu.nikitazubov.jsonplaceholderproxy.service.ProxyUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,16 +16,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.sql.DataSource;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**",
-            "/v2/api-docs",
-            "/v3/api-docs",
-            "/v3/api-docs/**",
+    private static final String[] WHITE_LIST_URL = {
             "/swagger-resources",
             "/swagger-resources/**",
             "/configuration/ui",
@@ -33,7 +28,7 @@ public class SecurityConfig {
             "/swagger-ui/**",
             "/webjars/**",
             "/swagger-ui.html,",
-            "/api/proxy/users/**"};
+            "/api/proxy/add_user/"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, RequestAuditFilter requestAuditFilter) throws Exception {
@@ -54,7 +49,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new ProxyUserDetailsService();
+        return new ProxyUserService();
     }
 
     @Bean

@@ -4,34 +4,35 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.processing.SQL;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "audit.logs")
 @NoArgsConstructor
 @ToString
+@Table(name = "audit", schema = "jsonplaceholder_proxy")
 public class AuditLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column
+    @Column(name = "id")
     private UUID id;
 
-    @Column
+    @Column(name = "date_time")
     private LocalDateTime dateTime;
 
-    @Column
+    @Column(name = "user_name")
     private String userName;
 
-    @Column
+    @Column(name = "has_access")
     private boolean hasAccess;
 
-    @Column
+    @Column(name = "method")
     private String method;
 
-    @Column
+    @Column(name = "url")
     private String url;
 }

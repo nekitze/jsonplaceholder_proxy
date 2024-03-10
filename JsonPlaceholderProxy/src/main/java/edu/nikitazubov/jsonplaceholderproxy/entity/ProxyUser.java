@@ -5,13 +5,9 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "security.users")
+@Table(name = "users", schema = "jsonplaceholder_proxy")
 public class ProxyUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     @Column(name = "name")
     private String name;
 

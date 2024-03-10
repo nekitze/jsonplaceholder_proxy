@@ -30,12 +30,13 @@ public class AlbumController {
     }
 
     @PutMapping("/{id}")
-    public Album updateAlbum(@RequestBody Album album) {
+    public Album updateAlbum(@PathVariable Long id, @RequestBody Album album) {
+        album.setId(id);
         return albumService.updateAlbum(album);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteAlbum(@PathVariable("id") Long id) {
+    public String deleteAlbum(@PathVariable Long id) {
         return albumService.deleteAlbum(id);
     }
 }

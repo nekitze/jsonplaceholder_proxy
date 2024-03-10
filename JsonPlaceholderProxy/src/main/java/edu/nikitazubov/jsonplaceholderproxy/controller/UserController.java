@@ -2,6 +2,7 @@ package edu.nikitazubov.jsonplaceholderproxy.controller;
 
 import edu.nikitazubov.jsonplaceholderproxy.model.User;
 import edu.nikitazubov.jsonplaceholderproxy.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,12 +31,13 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@RequestBody User user) {
+    public User updateUser(@PathVariable Long id, @RequestBody User user) {
+        user.setId(id);
         return userService.updateUser(user);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    public String deleteUser(@PathVariable Long id) {
         return userService.deleteUser(id);
     }
 }

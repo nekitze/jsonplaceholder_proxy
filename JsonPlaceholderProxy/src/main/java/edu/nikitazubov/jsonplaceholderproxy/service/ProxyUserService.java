@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ProxyUserDetailsService implements UserDetailsService {
+public class ProxyUserService implements UserDetailsService {
     @Autowired
     private ProxyUserRepository userRepository;
 
