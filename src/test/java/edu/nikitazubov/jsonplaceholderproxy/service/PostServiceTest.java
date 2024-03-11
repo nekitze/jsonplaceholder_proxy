@@ -1,18 +1,19 @@
 package edu.nikitazubov.jsonplaceholderproxy.service;
 
+import edu.nikitazubov.jsonplaceholderproxy.configuration.TestConfig;
 import edu.nikitazubov.jsonplaceholderproxy.model.Post;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.cache.CacheManager;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.*;
 
 @SpringBootTest
-@TestConfiguration
+@ContextConfiguration(classes = TestConfig.class)
 public class PostServiceTest {
 
     @Autowired
