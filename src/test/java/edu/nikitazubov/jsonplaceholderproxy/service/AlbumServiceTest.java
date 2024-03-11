@@ -6,12 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.Objects;
 
 @SpringBootTest
+@TestConfiguration
 public class AlbumServiceTest {
 
     @Autowired
@@ -23,8 +24,25 @@ public class AlbumServiceTest {
     private final static Album TEST_ALBUM = new Album(1L, "Album");
 
     @BeforeEach
-    @CacheEvict(value = "albums", allEntries = true)
     public void clearCache() {
+        Objects.requireNonNull(cacheManager.getCache("albums")).clear();
+    }
+
+    @Test
+    public void getAlbumByID() {
+        Album expected = new Album();
+        expected.setId(1L);
+        expected.setTitle("quidem molestiae enim");
+        expected.setUserId(1L);
+
+        Album actual = albumService.getAlbumById(1L);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getAlbumByIDNotExisting() {
+        Album actual = albumService.getAlbumById(666L);
+        Assertions.assertNull(actual);
     }
 
     @Test

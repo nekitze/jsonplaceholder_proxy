@@ -6,12 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.*;
 
 @SpringBootTest
+@TestConfiguration
 public class PostServiceTest {
 
     @Autowired
@@ -23,8 +24,30 @@ public class PostServiceTest {
     private final static Post TEST_POST = new Post(1L, "Post", "Post body");
 
     @BeforeEach
-    @CacheEvict(value = "posts", allEntries = true)
     public void clearCache() {
+        Objects.requireNonNull(cacheManager.getCache("posts")).clear();
+    }
+
+    @Test
+    public void getPostByID() {
+        Post expected = new Post();
+        expected.setId(1L);
+        expected.setUserId(1L);
+        expected.setTitle("sunt aut facere repellat provident occaecati excepturi optio reprehenderit");
+        expected.setBody("""
+                quia et suscipit
+                suscipit recusandae consequuntur expedita et cum
+                reprehenderit molestiae ut ut quas totam
+                nostrum rerum est autem sunt rem eveniet architecto""");
+
+        Post actual = postService.getPostById(1L);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getPostByIDNotExisting() {
+        Post actual = postService.getPostById(666L);
+        Assertions.assertNull(actual);
     }
 
     @Test

@@ -6,12 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.Objects;
 
 @SpringBootTest
+@TestConfiguration
 public class UserServiceTest {
 
     @Autowired
@@ -27,8 +28,29 @@ public class UserServiceTest {
             , null, null, null, null);
 
     @BeforeEach
-    @CacheEvict(value = "users", allEntries = true)
     public void clearCache() {
+        Objects.requireNonNull(cacheManager.getCache("users")).clear();
+    }
+
+    @Test
+    public void getUserByID() {
+        Long expectedId = 1L;
+        String expectedName = "Leanne Graham";
+        String expectedUsername = "Bret";
+        String expectedPhone = "1-770-736-8031 x56442";
+
+        User actual = userService.getUserById(1L);
+
+        Assertions.assertEquals(expectedId, actual.getId());
+        Assertions.assertEquals(expectedName, actual.getName());
+        Assertions.assertEquals(expectedUsername, actual.getUsername());
+        Assertions.assertEquals(expectedPhone, actual.getPhone());
+    }
+
+    @Test
+    public void getUserByIDNotExisting() {
+        User actual = userService.getUserById(666L);
+        Assertions.assertNull(actual);
     }
 
     @Test
