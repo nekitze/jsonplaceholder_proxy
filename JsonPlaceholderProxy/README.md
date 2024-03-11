@@ -5,6 +5,7 @@
   * [О проекте](#о-проекте)
   * [Сборка и запуск](#сборка-и-запуск)
     * [С помощью Docker (рекомендуется)](#с-помощью-docker-рекомендуется)
+    * [Доступ к базе данных внутри контейнера](#доступ-к-базе-данных-внутри-контейнера)
     * [С помощью Maven](#с-помощью-maven)
   * [Тестирование API](#тестирование-api)
   * [Список пользователей по умолчанию](#список-пользователей-по-умолчанию-создаются-в-бд-при-запуске)
@@ -39,6 +40,23 @@
 ```shell
 docker compose up
 ```
+При первом запуске будут подкачаны необходимые образы для работы с Postgres и JDK, поэтому процесс может занять пару минут.
+
+### Доступ к базе данных внутри контейнера
+
+Чтобы посмотреть, что лежит в БД контейнера, можно использовать следующие команды:
+
+- Для вывода в терминал записей из таблицы аудита:
+
+```shell
+docker exec -it jsonplaceholderproxy-db-1 psql -U postgres -d postgres -c "select * from jsonplaceholder_proxy.audit"
+```
+
+- Для вывода сохраненных пользователей:
+
+```shell
+docker exec -it jsonplaceholderproxy-db-1 psql -U postgres -d postgres -c "select * from jsonplaceholder_proxy.users"
+```
 
 ### С помощью Maven:
 1. Устанавливаем и запускаем Postgres на локальной машине или где-нибудь еще.
@@ -65,6 +83,8 @@ java -jar target/JsonPlaceholderProxy.jar
 Для тестирования api можно использовать [Postman](https://www.postman.com/winter-comet-601186/workspace/jsonplaceholderproxy-api/request/25055749-b1bae944-cc57-403f-a7b9-c851e31eb19c) с заготовленными запросами.
 Для того, чтобы рабоать с Postman в браузере и он мог отправлять запросы на ваш localhost, установите Postman Agent.
 
+Также для взаимодействия предусмотрена интеграция со Swagger UI, доступ по http://localhost:3333/jsonplaceholder_proxy/swagger-ui/index.html
+
 ## Список пользователей по умолчанию (создаются в БД при запуске):
 
 | Name     | Password | Roles                                                                                |
@@ -74,7 +94,7 @@ java -jar target/JsonPlaceholderProxy.jar
 | albums   | albums   | ROLE\_ALBUMS                                                                         |
 | posts    | posts    | ROLE\_POSTS                                                                          |
 | visitor  | visitor  | ROLE\_POSTS\_VIEWER, ROLE\_ALBUMS\_VIEWER                                            |
-| redactor | redactor | ROLE\_POSTS\_VIEWER, ROLE\_POSTS\_EDITOR, ROLE\_ALBUMS\_VIEWER, ROLE\_ALBUMS\_EDITOR |
+| redactor | redactor | ROLE\_POSTS\_EDITOR, ROLE\_ALBUMS\_EDITOR |
 
 Для добавления новых пользователей используйте эндпоинт ```/api/proxy/add_user/```
 
