@@ -22,21 +22,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
-    private static final String[] WHITE_LIST_URL = {
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/swagger-ui/**",
-            "/swagger-ui.html,",
-            "/api/proxy/add_user/"};
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, RequestAuditFilter requestAuditFilter) throws Exception {
         http
                 .addFilterBefore(requestAuditFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers(WHITE_LIST_URL).permitAll()
+                        .requestMatchers("/api/proxy/add_user/", "/swagger-ui/**").hasRole("ADMIN")
+
                         .requestMatchers(HttpMethod.POST, "/api/posts/**").hasRole("POSTS_EDITOR")
                         .requestMatchers(HttpMethod.PUT, "/api/posts/**").hasRole("POSTS_EDITOR")
                         .requestMatchers(HttpMethod.DELETE, "/api/posts/**").hasRole("POSTS_EDITOR")
