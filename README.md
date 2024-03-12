@@ -10,7 +10,7 @@
   * [Тестирование API](#тестирование-api)
   * [Список пользователей по умолчанию](#список-пользователей-по-умолчанию-создаются-в-бд-при-запуске)
 <!-- TOC -->
-
+<br><br>
 ## О проекте
 Проект релизует REST API для перенаправления запросов на https://jsonplaceholder.typicode.com/
 
@@ -26,11 +26,11 @@
 
 Для хранения пользователей и ведения аудита используется база данных Postgres.<br>
 
-Используется кэширование для уменьшения числа запросов к jsonplaceholder.
+Используется кэширование для уменьшения числа запросов к jsonplaceholder.<br><br><br>
 
 ## Сборка и запуск
 
-После запуска проект будет доступен по http://localhost:3333/jsonplaceholder_proxy/ <br>
+После запуска проект будет доступен по http://localhost:3333/jsonplaceholder_proxy/ <br><br>
 
 ### С помощью Docker (рекомендуется):
 В Dockerfile уже описаны все инструкции для сборки проекта.
@@ -40,7 +40,7 @@
 ```shell
 docker compose up
 ```
-При первом запуске будут подкачаны необходимые образы для работы с Postgres и JDK, поэтому процесс может занять пару минут.
+При первом запуске будут подкачаны необходимые образы для работы с Postgres и JDK, поэтому процесс может занять пару минут.<br><br>
 
 ### Доступ к базе данных внутри контейнера
 
@@ -57,6 +57,8 @@ docker exec -it jsonplaceholderproxy-db-1 psql -U postgres -d postgres -c "selec
 ```shell
 docker exec -it jsonplaceholderproxy-db-1 psql -U postgres -d postgres -c "select * from jsonplaceholder_proxy.users"
 ```
+
+<br><br>
 
 ### С помощью Maven:
 1. Устанавливаем и запускаем Postgres на локальной машине или где-нибудь еще.
@@ -77,14 +79,14 @@ mvn package
 ```shell
 java -jar target/JsonPlaceholderProxy.jar
 ```
-
+<br><br>
 ## Тестирование API
 
 Для тестирования api можно использовать [Postman](https://www.postman.com/winter-comet-601186/workspace/jsonplaceholderproxy-api/request/25055749-b1bae944-cc57-403f-a7b9-c851e31eb19c) с заготовленными запросами.
 Для того, чтобы рабоать с Postman в браузере и он мог отправлять запросы на ваш localhost, установите Postman Agent.
 
 Также для взаимодействия предусмотрена интеграция со Swagger UI, доступ по http://localhost:3333/jsonplaceholder_proxy/swagger-ui/index.html
-
+<br><br>
 ## Список пользователей по умолчанию (создаются в БД при запуске):
 
 | Name     | Password | Roles                                                                                |
